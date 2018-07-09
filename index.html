@@ -7,53 +7,12 @@
 		<script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
 <script type="IN/MemberProfile" data-id="https://www.linkedin.com/in/sampathliyanage" data-format="inline" data-related="false"></script>
 
-<div class="row">
-    <h1 id="github-profile-card">
-        <a href="http://github-profile.com/">GitHub Profile Card</a>
-    </h1>
-    <!-- Load your own profile -->
-    <div class="config-section-left">
-        <!-- Widget template -->
-        <form action="" class="tooltip choose-user">
-            <input type="text" placeholder="GitHub username" id="gh-uname"/>
-            <input type="submit" id="gh-uname-submit" value="send"/>
-        </form>
-
-        <form action="" class="tooltip choose-repos-num">
-            <label for="gh-reposNum">repositories: </label>
-            <input type="number" min="0" max="10" value="5" id="gh-reposNum"/>
-        </form>
-
-        <form action="" class="tooltip choose-repo-sorting">
-            <input type="radio" name="repo-sorting" id="last-updated" value=""/>
-            <label for="last-updated">Last updated</label>
-            <br/>
-            <input type="radio" name="repo-sorting" id="most-starred" value="" checked/>
-            <label for="most-starred" class="active">Most starred</label>
-        </form>
-    </div>
-
-    <div class="content-section">
-        <div id="github-card-demo" data-username="samliyanage"></div>
-    </div>
-</div>
-<h2>Use it on your website! - <a href="http://github-profile.com/#quick-install">Guide</a></h2>
-<div class="row">
-    <div class="pre">
-        <textarea id="install-code"
-                  readonly="1"
-                  rows="6"
-                  spellcheck="false"
-                  onclick="this.focus(); this.select()">
-        </textarea>
-    </div>
-</div>
 <script>
 (function () {
     'use strict';
 
     const attributes = {
-        username: 'data-username',
+        username: samliyanage,
         maxRepos: 'data-max-repos',
         sortBy: 'data-sort-by',
         headerText: 'data-header-text'
@@ -515,6 +474,47 @@ label {
 .active {
   font-weight: bold;
 }
-</style>		
+</style>	
+
+<div class="row">
+    <h1 id="github-profile-card">
+        <a href="http://github-profile.com/">GitHub Profile Card</a>
+    </h1>
+    <!-- Load your own profile -->
+    <div class="config-section-left">
+        <!-- Widget template -->
+        <form action="" class="tooltip choose-user">
+            <input type="text" placeholder="GitHub username" id="gh-uname"/>
+            <input type="submit" id="gh-uname-submit" value="send"/>
+        </form>
+
+        <form action="" class="tooltip choose-repos-num">
+            <label for="gh-reposNum">repositories: </label>
+            <input type="number" min="0" max="10" value="5" id="gh-reposNum"/>
+        </form>
+
+        <form action="" class="tooltip choose-repo-sorting">
+            <input type="radio" name="repo-sorting" id="last-updated" value=""/>
+            <label for="last-updated">Last updated</label>
+            <br/>
+            <input type="radio" name="repo-sorting" id="most-starred" value="" checked/>
+            <label for="most-starred" class="active">Most starred</label>
+        </form>
+    </div>
+
+    <div class="content-section">
+        <div id="github-card-demo" data-username="samliyanage"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="pre">
+        <textarea id="install-code"
+                  readonly="1"
+                  rows="6"
+                  spellcheck="false"
+                  onclick="this.focus(); this.select()">
+        </textarea>
+    </div>
+</div>	
 	</body>
 </html>
