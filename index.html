@@ -1,520 +1,461 @@
-<html>
-	<head>
-		<title> Sampath@GitHub</title>
-	</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
-	<body>
-		<script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
-<script type="IN/MemberProfile" data-id="https://www.linkedin.com/in/sampathliyanage" data-format="inline" data-related="false"></script>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="templatemo">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-<script>
-(function () {
-    'use strict';
+<title>Sampath Liyanage (samliyanage)</title>
+<!--
+Stimulus Template
+http://www.templatemo.com/tm-498-stimulus
+-->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/templatemo-style.css">
 
-    const attributes = {
-        username: 'samliyanage',
-        maxRepos: 'data-max-repos',
-        sortBy: 'data-sort-by',
-        headerText: 'data-header-text'
-    };
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700" rel="stylesheet">
 
-    window.widgetGenerator = {
-        regenerate: regenerate
-    };
+</head>
+<body data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 
-    function regenerate(options) {
-        const attributesTemplate = Object.keys(options)
-            .map(option => {
-                const attribute = attributes[option];
-                const value = options[option];
-                if (!attribute) {
-                    return '';
-                }
-                return `\n\t${attribute}="${value}"`;
-            })
-            .join('');
 
-        return `<div id="github-card" ${attributesTemplate}>\n</div>`;
-    }
-})();
-(function (GitHubCard, widgetGenerator) {
-    "use strict";
+<!-- PRE LOADER -->
 
-	// Generating new widget from user input
-    document.addEventListener('DOMContentLoaded', function() {
-        var options = {
-            template: '#github-card-demo',
-            sortBy: 'stars', // possible: 'stars', 'updateTime'
-            headerText: 'Most starred repositories',
-            maxRepos: 5
-        };
-
-        var widget = new GitHubCard(options);
-        widget.init();
-        regenerate(options);
-
-        initSortingControl(options, refreshWidget);
-        initRepositoriesControl(options, refreshWidget);
-        initUserControl(options, initWidget);
-
-        function initWidget(options) {
-            widget = new GitHubCard(options);
-            widget.init();
-            regenerate(options);
-        }
-
-        function refreshWidget(updatedOptions) {
-            widget.refresh(updatedOptions);
-            regenerate(updatedOptions);
-        }
-
-        function regenerate(updatedOptions) {
-            var textarea = document.getElementById("install-code");
-            textarea.value = widgetGenerator.regenerate(updatedOptions);
-        }
-    });
-
-    // Sort repository acording to
-    // radio inputs on website
-    function initSortingControl(options, refreshWidget) {
-        var $sortingRadios = document.querySelectorAll('.choose-repo-sorting label');
-
-        // sort by update time
-        $sortingRadios[0].addEventListener('click', function (element) {
-            element.target.classList.add('active');
-            $sortingRadios[1].classList.remove('active');
-
-            options.sortBy = 'updateTime';
-            options.headerText = element.target.textContent + ' repositories';
-
-            refreshWidget(options);
-        });
-
-        // sort by starrgazers
-        $sortingRadios[1].addEventListener('click', function (element) {
-            element.target.classList.add('active');
-            $sortingRadios[0].classList.remove('active');
-
-            options.sortBy = 'stars';
-            options.headerText = element.target.textContent + ' repositories';
-
-            refreshWidget(options);
-        });
-    }
-
-    // Manipulating the number of repositories
-    function initRepositoriesControl(options, refreshWidget) {
-        var $inputNumber = document.getElementById('gh-reposNum');
-
-        $inputNumber.onchange = function() {
-            options.maxRepos = $inputNumber.value;
-
-            refreshWidget(options);
-        };
-    }
-
-    // Creating brand new widget instance
-    // for user that we type in input
-    function initUserControl(options, fn) {
-        var	$input = document.getElementById('gh-uname'),
-            $submit = document.getElementById('gh-uname-submit');
-
-        $submit.addEventListener('click', function (element) {
-            options.username = $input.value;
-            fn(options);
-
-            element.preventDefault();
-        });
-    }
-})(window.GitHubCard, window.widgetGenerator);
-
-</script>
-
-<style>
-/** GitHub Profile Card - v2.0.0 **/ 
-/**
- * Github widget styles 
- * ------------------------------------------------------------------
- */
-.gh-profile-card {
-  /* followers number */
-  /* List of repositories */ }
-  .gh-profile-card {
-    width: 280px;
-    border-radius: 5px;
-    font-size: 16px;
-    font-family: Helvetica;
-    background: #FAFAFA;
-    border-width: 1px 1px 2px;
-    border-style: solid;
-    border-color: #DDD;
-    overflow: hidden; }
-  .gh-profile-card a {
-    text-decoration: none;
-    color: #444; }
-    .gh-profile-card a:hover {
-      color: #4183C4; }
-  .gh-profile-card .name {
-    display: block;
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #222; }
-  .gh-profile-card .error {
-    font-size: 0.8em;
-    color: #444;
-    padding: 10px; }
-  .gh-profile-card .error span {
-    display: block;
-    border-bottom: 1px solid #DDD;
-    padding-bottom: 5px;
-    margin-bottom: 5px; }
-    .gh-profile-card .error span.remain {
-      text-align: center;
-      font-weight: bold; }
-  .gh-profile-card .profile {
-    background: #FFF;
-    overflow: hidden;
-    padding: 15px 10px;
-    padding-bottom: 0;
-    min-height: 135px; }
-  .gh-profile-card .stats {
-    padding: 5px; }
-  .gh-profile-card .languages {
-    position: relative;
-    clear: both;
-    margin: 0 -10px;
-    padding: 10px;
-    border-top: 1px solid #DEDEDE;
-    font-size: 0.8em; }
-  .gh-profile-card .languages::before {
-    position: absolute;
-    top: -0.7em;
-    background: #FFF;
-    padding-right: 5px;
-    content: 'Top languages';
-    font-style: italic;
-    color: #555; }
-  .gh-profile-card .languages li {
-    display: inline-block;
-    color: #444;
-    font-weight: bold;
-    margin-left: 10px; }
-    .gh-profile-card .languages li::after {
-      content: '\2022';
-      margin-left: 10px;
-      color: #999; }
-    .gh-profile-card .languages li:last-child::after {
-      content: ''; }
-  .gh-profile-card .followMe {
-    margin-top: 3px; }
-  .gh-profile-card .follow-button {
-    font-size: 0.8em;
-    color: #333;
-    float: left;
-    padding: 0 10px;
-    line-height: 1.5em;
-    border: 1px solid #D5D5D5;
-    border-radius: 3px;
-    font-weight: bold;
-    background: #EAEAEA;
-    background-image: linear-gradient(#FAFAFA, #EAEAEA);
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none; }
-  .gh-profile-card .follow-button:hover {
-    color: inherit;
-    background: #DDD;
-    background-image: linear-gradient(#EEE, #DDD); }
-  .gh-profile-card .followMe span {
-    position: relative;
-    background: #FFF;
-    margin-left: 8px;
-    padding: 0 5px;
-    color: #444;
-    font-size: 0.8em;
-    border: 1px solid;
-    border-color: #BBB; }
-  .gh-profile-card .followMe span::before {
-    content: '';
-    position: absolute;
-    display: block;
-    width: 5px;
-    height: 5px;
-    left: -4px;
-    top: 30%;
-    background: inherit;
-    border-left: 1px solid;
-    border-top: 1px solid;
-    border-color: inherit;
-    transform: rotate(-45deg); }
-  .gh-profile-card .avatar {
-    width: 64px;
-    height: 64px;
-    float: left;
-    margin: 0 10px 15px 0;
-    margin-left: 0;
-    border-radius: 5px;
-    box-shadow: 0 0 2px 0 #DDD; }
-  .gh-profile-card .repos {
-    clear: both; }
-  .gh-profile-card .repos .header {
-    display: block;
-    width: 100%;
-    font-weight: bold;
-    background: #EAEAEA;
-    background-image: linear-gradient(#FAFAFA, #EAEAEA);
-    border: solid #D5D5D5;
-    border-width: 1px 0;
-    color: #555;
-    font-size: 0.8em;
-    padding: 5px 10px; }
-  .gh-profile-card .repos a {
-    position: relative;
-    display: block;
-    padding: 7px 10px;
-    font-size: 0.9em;
-    border-top: 1px solid #DDD; }
-    .gh-profile-card .repos a:first-of-type {
-      border: none; }
-  .gh-profile-card .repos .repo-name {
-    max-width: 280px;
-    font-weight: bold;
-    text-overflow: ellipsis; }
-  .gh-profile-card .repos .updated {
-    display: block;
-    font-size: 0.75em;
-    font-style: italic;
-    color: #777; }
-  .gh-profile-card .repos .star {
-    position: absolute;
-    font-size: 0.9em;
-    right: 0.5em;
-    top: 1.1em;
-    color: #888; }
-    .gh-profile-card .repos .star::after {
-      content: '\a0\2605';
-      font-size: 1.1em;
-      font-weight: bold; }
-
-/* Demo styles */
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  max-width: 500px;
-  margin: 10px auto;
-  font-size: 18px;
-
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #232323;
-  background-color: #FBFAF7;
-  -webkit-font-smoothing: antialiased;
-}
-
-h1 {
-  font-size: 30px;
-}
-
-h1, h2, h3 {
-  display: block;
-  font-family: Arvo, Monaco, serif;
-  line-height: 1.3;
-  font-weight: normal;
-  color: #232323;
-  margin: 36px 0 10px;
-
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 5px;
-}
-
-a {
-  color: #C30000;
-  font-weight: 200;
-  text-decoration: none;
-}
-
-.row {
-    padding: 5px;
-    margin-top: 20px;
-    overflow: hidden;
-}
-
-.config-section-left,
-.config-section-right {
-  float: left;
-  max-width: 200px;
-}
-
-.content-section {
-  float: left;
-}
-
-.content-section .choose-user {
-  margin-bottom: 10px;
-}
-
-.content-section .tooltip {
-  margin: 15px 0;
-  position: relative;
-}
-
-.content-section .tooltip::before {
-  display: none;
-}
-
-.content-section input[type="text"] {
-  max-width: 220px;
-  width: 220px;
-}
-
-.pre {
-    border: 1px solid #dddfe2;
-    border-radius: 3px;
-    background-color: #f6f7f9;
-}
-
-.pre textarea {
-    background: none;
-    border: none;
-    box-sizing: border-box;
-    color: #4b4f56;
-    font-family: Menlo,Monaco,Andale Mono,Courier New,monospace;
-    font-size: 14px;
-    height: auto;
-    line-height: 20px;
-    padding: 12px;
-    min-width: 100%;
-}
-
-.tooltip {
-  position: relative;
-  display: block;
-  box-shadow: 0 0 1px 1px #FFF;
-  background: #FFF;
-  border: 1px solid #DDD;
-  padding: 2px 7px;
-  margin-top: 15px;
-  margin-right: 15px;
-}
-
-.tooltip::before {
-  content: '';
-  position: absolute;
-  display: block;
-  width: 10px;
-  height: 10px;
-  right: -6px;
-  top: 6px;
-  background: inherit;
-  border-right: 1px solid;
-  border-bottom: 1px solid;
-  border-color: inherit;
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-}
-
-.config-section-right {
-  position: relative;
-  top: 180px;
-}
-
-.config-section-right .tooltip {
-  margin-left: 15px;
-}
-
-.config-section-right .tooltip::before {
-  left: -6px;
-  right: auto;
-
-  border: none;
-  border-top: 1px solid;
-  border-left: 1px solid;
-  border-color: inherit;
-}
-
-input {
-  outline: none;
-}
-
-input[type="text"],
-input[type="number"],
-textarea {
-  border: none;
-  max-width: 125px;
-  padding: 5px;
-  font-size: 0.7em;
-}
-
-input[type="number"] {
-  width: 85px;
-}
-
-input[type="submit"] {
-  background: #D14836;
-  color: #FFF;
-  border: none;
-  border-radius: 3px;
-  padding: 3px 5px;
-  font-size: 0.7em;
-}
-
-label {
-  font-size: 0.7em;
-}
-
-.choose-repo-sorting [type="radio"] {
-  display: none;
-}
-
-.active {
-  font-weight: bold;
-}
-</style>	
-
-<div class="row">
-    <h1 id="github-profile-card">
-        <a href="http://github-profile.com/">GitHub Profile Card</a>
-    </h1>
-    <!-- Load your own profile -->
-    <div class="config-section-left">
-        <!-- Widget template -->
-        <form action="" class="tooltip choose-user">
-            <input type="text" placeholder="GitHub username" id="gh-uname"/>
-            <input type="submit" id="gh-uname-submit" value="send"/>
-        </form>
-
-        <form action="" class="tooltip choose-repos-num">
-            <label for="gh-reposNum">repositories: </label>
-            <input type="number" min="0" max="10" value="5" id="gh-reposNum"/>
-        </form>
-
-        <form action="" class="tooltip choose-repo-sorting">
-            <input type="radio" name="repo-sorting" id="last-updated" value=""/>
-            <label for="last-updated">Last updated</label>
-            <br/>
-            <input type="radio" name="repo-sorting" id="most-starred" value="" checked/>
-            <label for="most-starred" class="active">Most starred</label>
-        </form>
-    </div>
-
-    <div class="content-section">
-        <div id="github-card-demo" data-username="samliyanage"></div>
-    </div>
+<div class="preloader">
+     <div class="spinner">
+          <span class="spinner-rotate"></span>
+     </div>
 </div>
-<div class="row">
-    <div class="pre">
-        <textarea id="install-code"
-                  readonly="1"
-                  rows="6"
-                  spellcheck="false"
-                  onclick="this.focus(); this.select()">
-        </textarea>
-    </div>
-</div>	
-	</body>
+
+
+<!-- Navigation Section -->
+
+<div class="navbar navbar-fixed-top custom-navbar" role="navigation">
+     <div class="container">
+
+          <!-- navbar header -->
+          <div class="navbar-header">
+               <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+               </button>
+               <a href="#" class="navbar-brand">Sampath Liyanage (samliyanage)</a>
+          </div>
+
+          <div class="collapse navbar-collapse">
+               <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#home" class="smoothScroll">Home</a></li>
+                    <li><a href="#about" class="smoothScroll">About Me</a></li>
+                    <li><a href="#experience" class="smoothScroll">Experiences</a></li>
+               </ul>
+          </div>
+
+     </div>
+</div>
+
+
+<!-- Home Section -->
+
+<section id="home" class="parallax-section">
+     <div class="container">
+          <div class="row">
+
+               <div class="col-md-6 col-sm-6">
+                    <div class="home-img"></div>
+               </div>
+
+               <div class="col-md-6 col-sm-6">
+                    <div class="home-thumb">
+                         <div class="section-title">
+                              <h4 class="wow fadeInUp" data-wow-delay="0.3s">Welcome!</h4>
+                              <h1 class="wow fadeInUp" data-wow-delay="0.6s">Hello, I am <strong>Sampath Liyanage</strong> currently based in Colombo, Sri Lanka.</h1>
+                              <p class="wow fadeInUp" data-wow-delay="0.9s">Senior Lead Engineer specialized in Java.</p>
+                              
+                              <a href="#about" class="wow fadeInUp smoothScroll section-btn btn btn-success" data-wow-delay="1.4s">Get Started</a>
+                              
+                         </div>
+                    </div>
+               </div>
+
+
+          </div>
+     </div>
+</section>
+
+
+<!-- About Section -->
+
+<section id="about" class="parallax-section">
+     <div class="container">
+          <div class="row">
+
+               <div class="col-md-6 col-sm-12">
+                    <div class="about-thumb">
+                         <div class="wow fadeInUp section-title" data-wow-delay="0.4s">
+                              <h1>Sampath Liyanage</h1>
+                              <p class="color-yellow">Oracle Certified Java Developer</p>
+                         </div>
+                         <div class="wow fadeInUp" data-wow-delay="0.8s">
+                              <p>Lead Software Engineer (Specialized in Java/ Java EE related open source technologies ) with 6+ years of industrial experience delivering Java/Java EE related technology solutions, </p>
+
+							  <p>Currently employed at Vertrax Inc since 2018 February.
+
+							  <p>Employed as Tech Lead (Specialized in Java EE Technologies) at SYNERGEN Health LLC Since January 2016 to February 2018.</p>
+
+							  <p>Employed as Engineer- Technology (Java EE Developer) at Virtusa Corporation (NASDAQ:VRTU) Since November 2013 to January 2016.</p>
+
+							  <p>Holds a BSc in Computer Science degree with Merit Classification from University of Portsmouth (UOP) UK and certified as an Oracle Certified Professional, Java SE 6 Programmer since July, 2011.</p>
+                         </div>
+                    </div>
+               </div>
+
+               <div class="col-md-3 col-sm-6">
+                    <div class="background-image about-img"></div>
+               </div>
+
+               <div class="bg-yellow col-md-3 col-sm-6">
+                    <div class="skill-thumb">
+                         <div class="wow fadeInUp section-title color-white" data-wow-delay="1.2s">
+                              <h1>My Skills</h1>
+                              <p class="color-white">Java SE . Java EE . Open Source Programming</p>
+                         </div>
+
+                         <div class=" wow fadeInUp skills-thumb" data-wow-delay="1.6s">
+                         <strong>Java Standard Edition</strong>
+                              <span class="color-white pull-right">90%</span>
+                                   <div class="progress">
+                                        <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;"></div>
+                                   </div>
+
+                         <strong>Java Enterprise Edition</strong>
+                              <span class="color-white pull-right">80%</span>
+                                   <div class="progress">
+                                        <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
+                                   </div>
+					     <strong>Web Services</strong>
+                              <span class="color-white pull-right">80%</span>
+                                   <div class="progress">
+                                        <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
+                                   </div>
+						<strong>RDBMS and NoSQL Database Design</strong>
+                              <span class="color-white pull-right">75%</span>
+                                   <div class="progress">
+                                        <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
+                                   </div>
+					    <strong>JavaScript</strong>
+                              <span class="color-white pull-right">70%</span>
+                                   <div class="progress">
+                                        <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
+                                   </div>
+                         </div>
+
+                         <strong>HTML5 & CSS3</strong>
+                              <span class="color-white pull-right">60%</span>
+                                   <div class="progress">
+                                        <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                                   </div>
+                         </div>
+
+                    </div>
+               </div>
+
+          </div>
+     </div>
+</section>
+
+
+<!-- Service Section -->
+<!--
+<section id="service" class="parallax-section">
+     <div class="container">
+          <div class="row">
+
+               <div class="bg-yellow col-md-3 col-sm-6">
+                    <div class="wow fadeInUp color-white service-thumb" data-wow-delay="0.8s">
+                         <i class="fa fa-desktop"></i>
+                              <h3>Interface Design</h3>
+                              <p class="color-white">Phasellus vulputate tellus nec tortor varius elementum. Curabitur at pulvinar ante.</p>
+                    </div>
+               </div>
+
+               <div class="col-md-3 col-sm-6">
+                    <div class="wow fadeInUp color-white service-thumb" data-wow-delay="1.2s">
+                         <i class="fa fa-paper-plane"></i>
+                              <h3>Media Strategy</h3>
+                              <p class="color-white">Curabitur at pulvinar ante. Duis dui urna, faucibus eget felis eu, iaculis congue sem.</p>
+                    </div>
+               </div>
+
+               <div class="bg-dark col-md-3 col-sm-6">
+                    <div class="wow fadeInUp color-white service-thumb" data-wow-delay="1.6s">
+                         <i class="fa fa-table"></i>
+                              <h3>Mobile App</h3>
+                              <p class="color-white">Mauris convallis eros massa, vitae euismod arcu tempus ut. Quisque viverra iaculis.</p>
+                    </div>
+               </div>
+
+               <div class="bg-white col-md-3 col-sm-6">
+                    <div class="wow fadeInUp service-thumb" data-wow-delay="1.8s">
+                         <i class="fa fa-html5"></i>
+                              <h3>Coding</h3>
+                              <p>Mauris convallis eros massa, vitae euismod arcu tempus ut. Quisque viverra iaculis.</p>
+                    </div>
+               </div>
+
+          </div>
+     </div>
+</section>
+
+
+<!-- Experience Section -->
+<section id="experience" class="parallax-section">
+     <div class="container">
+          <div class="row">
+
+               <div class="col-md-6 col-sm-6" style="padding-left:250px;padding-top:250px">
+					<img src="images/java.png"/>
+               </div>
+
+               <div class="col-md-6 col-sm-6">
+                    <div class="color-white experience-thumb">
+                         <div class="wow fadeInUp section-title" data-wow-delay="0.8s">
+                              <h1>My Experiences</h1>
+                              <p class="color-white">Previous companies and my tasks</p>
+                         </div>
+
+                         <div class="wow fadeInUp color-white media" data-wow-delay="1.2s">
+                              <div class="media-object media-left">
+                                   <i class="fa fa-laptop"></i>
+                              </div>
+                              <div class="media-body">
+                                   <h3 class="media-heading">Vertrax Inc<small> 2018 Feb - Present</small></h3>
+                                   <p class="color-white">Working as a Senior Engineer specialized in Java/EE, AWS Tech Stack.</p>
+                              </div>
+                         </div>
+
+                         <div class="wow fadeInUp color-white media" data-wow-delay="1.6s">
+                              <div class="media-object media-left">
+                                   <i class="fa fa-laptop"></i>
+                              </div>
+                              <div class="media-body">
+                                   <h3 class="media-heading">SYNERGEN Health LLC <small>2016 Jan - 2018 Feb</small></h3>
+                                   <p class="color-white">Worked as a Lead Developer (Tech Lead) specialized in Java/Java EE and delivering Healthcare domain related solutions by following Agile/Scrum practices.</p>
+                              </div>
+                         </div>
+						  <div class="wow fadeInUp color-white media" data-wow-delay="1.6s">
+                              <div class="media-object media-left">
+                                   <i class="fa fa-laptop"></i>
+                              </div>
+                              <div class="media-body">
+                                   <h3 class="media-heading">SYNERGEN Health LLC <small>2016 Jan - 2018 Feb</small></h3>
+                                   <p class="color-white">Worked as a Lead Developer (Tech Lead) specialized in Java/Java EE and delivering Healthcare domain related solutions by following Agile/Scrum practices.</p>
+                              </div>
+                         </div>
+						  <div class="wow fadeInUp color-white media" data-wow-delay="1.6s">
+                              <div class="media-object media-left">
+                                   <i class="fa fa-laptop"></i>
+                              </div>
+                              <div class="media-body">
+                                   <h3 class="media-heading">Virtusa Corporation <small>2013 Oct - 2016 Jan</small></h3>
+                                   <p class="color-white">Worked 2+ years as Senior Software Engineer/Software Engineer Specialized in Java EE/ Java Web Services/ Middleware technologies.</p>
+                              </div>
+                         </div>
+						  <div class="wow fadeInUp color-white media" data-wow-delay="1.6s">
+                              <div class="media-object media-left">
+                                   <i class="fa fa-laptop"></i>
+                              </div>
+                              <div class="media-body">
+                                   <h3 class="media-heading">OneIT Perth <small>2013 Feb - 2013 Oct</small></h3>
+                                   <p class="color-white">Worked as a Software Engineer, specialized in Java and Java EE technologies.</p>
+                              </div>
+                         </div>
+						 <div class="wow fadeInUp color-white media" data-wow-delay="1.6s">
+                              <div class="media-object media-left">
+                                   <i class="fa fa-laptop"></i>
+                              </div>
+                              <div class="media-body">
+                                   <h3 class="media-heading">KM Web Solutions <small>2011 Sep - 2012 Nov</small></h3>
+                                   <p class="color-white">Worked as Java/Java EE Software Engineer.</p>
+                              </div>
+                         </div>
+
+                    </div>
+               </div>
+
+          </div>
+     </div>
+</section>
+
+
+<!-- Education Section -->
+
+<section id="education" class="parallax-section">
+     <div class="container">
+          <div class="row">
+
+               <div class="col-md-6 col-sm-6">
+                    <div class="color-white education-thumb">
+                         <div class="wow fadeInUp section-title" data-wow-delay="0.8s">
+                              <h1>My Education</h1>
+                              <p class="color-white">In cursus orci non ipsum gravida dignissim</p>
+                         </div>
+
+                         <div class="wow fadeInUp color-white media" data-wow-delay="1.2s">
+                              <div class="media-object media-left">
+                                   <i class="fa fa-laptop"></i>
+                              </div>
+                              <div class="media-body">
+                                   <h3 class="media-heading">University of Portsmouth <small>2008 Sep - 2012 May</small></h3>
+                                   <p class="color-white">Bachelor of Science in Computing with Merit Classification. </p>
+                              </div>
+                         </div>
+                         <div class="wow fadeInUp color-white media" data-wow-delay="1.6s">
+                              <div class="media-object media-left">
+                                   <i class="fa fa-laptop"></i>
+                              </div>
+                              <div class="media-body">
+                                   <h3 class="media-heading">Informatics Education Ltd. <small>2008 Sep - 2010 Aug</small></h3>
+                                   <p class="color-white">International Diploma in Computing (Validated by NCC, UK) - LK 040803240</p>
+								   <p class="color-white">International Advanced Diploma in Computing (Validated by NCC, UK) - LK 040803240</p>
+                              </div>
+                         </div>
+						 
+						 <div class="wow fadeInUp color-white media" data-wow-delay="1.2s">
+                              <div class="media-object media-left">
+                                   <i class="fa fa-laptop"></i>
+                              </div>
+                              <div class="media-body">
+                                   <h3 class="media-heading">S. Thomas' College <small>1995 - 2008</small></h3>
+                                   <p class="color-white">Primary and Secondary Education. </p>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+
+               <div class="col-md-6 col-sm-6">
+                    <div class="background-image education-img"></div>
+               </div>
+
+          </div>
+     </div>
+</section>
+
+
+<!-- Quotes Section -->
+<!-- 
+<section id="quotes" class="parallax-section">
+     <div class="overlay"></div>
+     <div class="container">
+          <div class="row">
+
+               <div class="col-md-offset-1 col-md-10 col-sm-12">
+                    <i class="wow fadeInUp fa fa-star" data-wow-delay="0.6s"></i>
+                    <h2 class="wow fadeInUp" data-wow-delay="0.8s">Proin lobortis eu diam et facilisis. Fusce nisi nibh, molestie in vestibulum quis, auctor et orci.</h2>
+                    <p class="wow fadeInUp" data-wow-delay="1s">Curabitur at pulvinar ante. Duis dui urna, faucibus eget felis eu, iaculis congue sem.</p>
+               </div>
+
+          </div>
+     </div>
+</section>
+
+-->
+<!-- Contact Section -->
+<!-- 
+<section id="contact" class="parallax-section">
+     <div class="container">
+          <div class="row">
+
+               <div class="col-md-6 col-sm-12">
+                    <div class="contact-form">
+                         <div class="wow fadeInUp section-title" data-wow-delay="0.2s">
+                              <h1 class="color-white">Say hello..</h1>
+                              <p class="color-white">Integer ut consectetur est. In cursus orci non ipsum gravida dignissim.</p>
+                         </div>
+
+                         <div id="contact-form">
+                              <form action="#template-mo" method="post">
+                                   <div class="wow fadeInUp" data-wow-delay="1s">
+                                        <input name="fullname" type="text" class="form-control" id="fullname" placeholder="Your Name">
+                                   </div>
+                                   <div class="wow fadeInUp" data-wow-delay="1.2s">
+                                        <input name="email" type="email" class="form-control" id="email" placeholder="Your Email">
+                                   </div>
+                                   <div class="wow fadeInUp" data-wow-delay="1.4s">
+                                        <textarea name="message" rows="5" class="form-control" id="message" placeholder="Write your message..."></textarea>
+                                   </div>
+                                   <div class="wow fadeInUp col-md-6 col-sm-8" data-wow-delay="1.6s">
+                                        <input name="submit" type="submit" class="form-control" id="submit" value="Send">
+                                   </div>
+                              </form>
+                         </div>
+
+                    </div>
+               </div>
+
+               <div class="col-md-3 col-sm-6">
+                    <div class="background-image contact-img"></div>
+               </div>
+
+               <div class="bg-dark col-md-3 col-sm-6">
+                    <div class="contact-thumb">
+                         <div class="wow fadeInUp contact-info" data-wow-delay="0.6s">
+                              <h3 class="color-white">Visit my office</h3>
+                              <p>456 New Street 22000, New York City, USA</p>
+                         </div>
+
+                         <div class="wow fadeInUp contact-info" data-wow-delay="0.8s">
+                              <h3 class="color-white">Contact.</h3>
+                              <p><i class="fa fa-phone"></i> 01-0110-0220</p>
+                              <p><i class="fa fa-envelope-o"></i> <a href="mailto:hello@company.co">hello@company.co</a></p>
+                              <p><i class="fa fa-globe"></i> <a href="#">company.co</a></p>
+                         </div>
+
+                    </div>
+               </div>
+
+          </div>
+     </div>
+</section>
+
+-->
+
+<!-- Footer Section -->
+
+<footer>
+	<div class="container">
+		<div class="row">
+
+               <div class="col-md-12 col-sm-12">
+                    <div class="wow fadeInUp footer-copyright" data-wow-delay="1.8s">
+                         <p>Copyright &copy; 2018 Sampath Liyanage</p>
+                    </div>
+				<ul class="wow fadeInUp social-icon" data-wow-delay="2s">
+                         <li><a href="https://www.facebook.com/sampathbandaraliyanage" class="fa fa-facebook"></a></li>
+                         <li><a href="https://twitter.com/SampathLiyanag1" class="fa fa-twitter"></a></li>
+                         <li><a href="https://www.linkedin.com/in/sampathliyanage" class="fa fa-linkedin"></a></li>
+						 <li><a href="https://github.com/samliyanage" class="fa fa-github"></a></li>
+                    </ul>
+               </div>
+			
+		</div>
+	</div>
+</footer>
+
+<!-- SCRIPTS -->
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.parallax.js"></script>
+<script src="js/smoothscroll.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/custom.js"></script>
+
+</body>
 </html>
